@@ -6,6 +6,7 @@ import { LoginForm } from './LoginForm';
 export default {
   title: 'Example/LoginForm',
   component: LoginForm,
+  argTypes: { onClick: { action: 'clicked' } },
 };
 
 const Template = (args) => <LoginForm {...args} />;

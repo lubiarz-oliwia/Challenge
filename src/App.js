@@ -26,13 +26,25 @@ function MyApp() {
     sessionStorage.setItem('user', JSON.stringify(userData));
     const user = sessionStorage.getItem('user');
     history.push('/main');
+    console.log(userData);
+    console.log(sessionStorage)
   }
 
   const [postId, setPostId] = useState([]);
 
-  const kk = (id) => {
+  const getDetails = (id) => {
     setPostId(id);
     history.push('/details');
+  }
+
+  const toMain = () => {
+    history.goBack('0');
+  }
+
+  const logOut = () => {
+    history.push('/');
+    sessionStorage.clear();
+    console.log(sessionStorage);
   }
 
   return (
@@ -48,14 +60,14 @@ function MyApp() {
           <Route exact path="/main">
             <Container>
               <Row>
-                <Col lg={4}> <MainPage setPostId={kk} /> </Col>
+                <Col lg={4}> <MainPage setPostId={getDetails} handleLogout={logOut}/> </Col>
               </Row>
             </Container>
           </Route>
           <Route exact path="/details">
             <Container>
               <Row>
-                <Col lg={4}> <Details id={postId} /> </Col>
+                <Col lg={4}> <Details id={postId} handleBack={toMain}/> </Col>
               </Row>
             </Container>
           </Route>

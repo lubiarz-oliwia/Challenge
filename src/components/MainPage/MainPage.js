@@ -5,7 +5,7 @@ import { Searchbox } from '../Searchbox/Searchbox';
 import { getPosts } from "../API/constants";
 
 
-export const MainPage = ({ setPostId }) => {
+export const MainPage = ({ setPostId, handleLogout }) => {
     const [posts, setPosts] = useState([]);
     const [postsFiltered, setPostsFiltered] = useState([]);
 
@@ -26,7 +26,7 @@ export const MainPage = ({ setPostId }) => {
 
     return (
         <>
-            <ButtonComponent variant='dark' children="Log out"></ButtonComponent>
+            <ButtonComponent variant='dark' children="Log out" onClick={handleLogout}></ButtonComponent>
             <Searchbox onSearchboxChange={filter} />
             <div>
                 {postsFiltered.map((item, index) => {

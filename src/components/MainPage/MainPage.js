@@ -5,20 +5,31 @@ import { Searchbox } from '../Searchbox/Searchbox';
 import { getPosts } from "../API/constants";
 
 
-export const MainPage = ({setPostId}) => {
+export const MainPage = ({ setPostId }) => {
     const [posts, setPosts] = useState([]);
+    const [postsFiltered, setPostsFiltered] = useState([]);
+
+    const wrapperfunc = (startPosts) => {
+        setPosts(startPosts);
+        setPostsFiltered(startPosts);
+    }
 
     useEffect(() => {
-        getPosts(setPosts);
+        getPosts(wrapperfunc);
     }, []);
 
+
+    const filter = (text) => {
+        const myPostsFiltered = posts.filter((el) => el.title.includes(text) || el.body.includes(text));
+        setPostsFiltered(myPostsFiltered);
+    }
 
     return (
         <>
             <ButtonComponent variant='dark' children="Log out"></ButtonComponent>
-            <Searchbox />
+            <Searchbox onSearchboxChange={filter} />
             <div>
-                {posts.map((item, index) => {
+                {postsFiltered.map((item, index) => {
                     return (
                         <Tile
                             userId={item.userId}

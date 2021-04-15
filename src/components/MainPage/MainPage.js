@@ -3,6 +3,8 @@ import { Tile } from '../Tile/Tile';
 import { ButtonComponent } from '../Button/Button';
 import { Searchbox } from '../Searchbox/Searchbox';
 import { getPosts } from "../API/constants";
+import { Error } from '../Error/Error';
+
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -16,8 +18,11 @@ export const MainPage = ({ setPostId, handleLogout }) => {
         setPostsFiltered(startPosts);
     }
 
+    const [isErrorPresent, failCallback] = useState(false)
+
+
     useEffect(() => {
-        getPosts(wrapperfunc);
+        getPosts(wrapperfunc, failCallback);
         console.log(wrapperfunc);
     }, []);
 
@@ -53,7 +58,10 @@ export const MainPage = ({ setPostId, handleLogout }) => {
                     })
                     }
                 </Row>
+                {isErrorPresent ? <Row className="justify-content-md-center"><Col lg={12}><Error></Error></Col></Row> : null}
+
             </Container>
+           
         </>
     )
 }

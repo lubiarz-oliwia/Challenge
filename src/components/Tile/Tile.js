@@ -2,17 +2,14 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 
 
-export const Tile = ({postId, userId, title, onTileClick}) => {  
+export const Tile = ({ postId, userId, title, onTileClick }) => {
   return (
-    <Card style={{ width: '18rem' }} onClick={() => onTileClick(postId)}>
-    <Card.Body>
-      <Card.Title>UserId: {userId}</Card.Title>
-      {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
-      <Card.Text>Title: {title}</Card.Text>
-      {/* <Card.Link href="#">Card Link</Card.Link>
-      <Card.Link href="#">Another Link</Card.Link> */}
-    </Card.Body>
-  </Card>
+    <Card style={{ height: '10rem', marginBottom: "10px" }} onClick={() => onTileClick(postId)}>
+      <Card.Body>
+        <Card.Title style={{ color: "#034EA2" }}>UserId: {userId}</Card.Title>
+        <Card.Text>Title: {title}</Card.Text>
+      </Card.Body>
+    </Card>
   )
-    };
+};
 

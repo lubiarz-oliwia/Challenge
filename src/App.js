@@ -48,30 +48,22 @@ function MyApp() {
   }
 
   return (
-    <div className="App">
-        <Switch>
-          <Route exact path="/">
-            <Container>
-              <Row>
-                <Col lg={4}> <LoginForm onSubmit={onLoginFormSubmit} /> </Col>
-              </Row>
-            </Container>
-          </Route>
-          <Route exact path="/main">
-            <Container>
-              <Row>
-                <Col lg={4}> <MainPage setPostId={getDetails} handleLogout={logOut}/> </Col>
-              </Row>
-            </Container>
-          </Route>
-          <Route exact path="/details">
-            <Container>
-              <Row>
-                <Col lg={4}> <Details id={postId} handleBack={toMain}/> </Col>
-              </Row>
-            </Container>
-          </Route>
-        </Switch>
+    <div className="App" style={{ marginTop: "20px" }}>
+      <Switch>
+        <Route exact path="/">
+          <Container>
+            <Row className="justify-content-md-center">
+              <Col lg={4}> <LoginForm onSubmit={onLoginFormSubmit} /> </Col>
+            </Row>
+          </Container>
+        </Route>
+        <Route exact path="/main">
+          <MainPage setPostId={getDetails} handleLogout={logOut} />
+        </Route>
+        <Route exact path="/details">
+          <Details id={postId} handleBack={toMain} />
+        </Route>
+      </Switch>
     </div>
   );
 }

@@ -3,7 +3,9 @@ import { Tile } from '../Tile/Tile';
 import { ButtonComponent } from '../Button/Button';
 import { Searchbox } from '../Searchbox/Searchbox';
 import { getPosts } from "../API/constants";
-
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 export const MainPage = ({ setPostId, handleLogout }) => {
     const [posts, setPosts] = useState([]);
@@ -16,8 +18,8 @@ export const MainPage = ({ setPostId, handleLogout }) => {
 
     useEffect(() => {
         getPosts(wrapperfunc);
+        console.log(wrapperfunc);
     }, []);
-
 
     const filter = (text) => {
         const myPostsFiltered = posts.filter((el) => el.title.includes(text) || el.body.includes(text));
@@ -26,21 +28,32 @@ export const MainPage = ({ setPostId, handleLogout }) => {
 
     return (
         <>
-            <ButtonComponent variant='dark' children="Log out" onClick={handleLogout}></ButtonComponent>
-            <Searchbox onSearchboxChange={filter} />
-            <div>
-                {postsFiltered.map((item, index) => {
-                    return (
-                        <Tile
-                            userId={item.userId}
-                            title={item.title}
-                            postId={item.id}
-                            onTileClick={setPostId}
-                        />
-                    )
-                })
-                }
-            </div>
+            <Container>
+                <Row className="justify-content-md-center" style={{ marginBottom: "10px" }}>
+                    <Col lg={4} md={6} style={{ marginTop: "10px" }}>
+                        <ButtonComponent variant='dark' children="Log out" onClick={handleLogout}></ButtonComponent>
+                    </Col>
+                    <Col lg={8} md={6} style={{ marginTop: "10px" }} >
+                        <Searchbox onSearchboxChange={filter} />
+                    </Col>
+                </Row>
+                <Row className="justify-content-md-center">
+                    {postsFiltered.map((item, index) => {
+                        return (
+                            <Col lg={4} md={6}>
+                                <Tile
+                                    userId={item.userId}
+                                    title={item.title}
+                                    postId={item.id}
+                                    onTileClick={setPostId}
+
+                                />
+                            </Col>
+                        )
+                    })
+                    }
+                </Row>
+            </Container>
         </>
     )
 }

@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import { ButtonComponent as Button } from '../Button/Button';
 
 const validationSchema = yup.object({
-    username: yup
+  username: yup
     .string('Enter your username')
     .required('Username is required')
     .min(5, "Username must be at least 5 characters long"),
@@ -49,12 +49,12 @@ export const LoginForm = ({ onSubmit }) => (
           onChange={handleChange}
         />
         <ErrorMessage name="password" />
-        <Button type="submit" onClick={handleSubmit}>
+        <Button style={{ marginTop: "30px" }} type="submit" onClick={handleSubmit}>
           Submit
         </Button>
       </Form>
     )}
-    </Formik>
+  </Formik>
 );
 
 LoginForm.propTypes = {
